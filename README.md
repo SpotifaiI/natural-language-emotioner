@@ -14,6 +14,12 @@ Application to recognize emotion in random comments sent to API for Machine Lear
 Para rodar o projeto, basta executar os comandos abaixo.
 
 ```shell
+# usando Docker
+$ docker compose up
+
+
+
+# ou se quiser rodar os pacotes manualmente
 $ pip install -r requirements.txt
 $ fastapi run app.py
 ```
