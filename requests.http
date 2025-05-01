@@ -1,0 +1,23 @@
+GET http://localhost:8000/stats
+Accept: application/json
+
+###
+### Send POST request with comment
+POST http://localhost:8000/ask
+Content-Type: application/json
+
+{
+  "comment": "conteúdo bom demais"
+}
+
+<> 2025-05-01T020949.200.json
+<> 2025-05-01T020941.200.json
+<> 2025-05-01T020931.200.json
+<> 2025-05-01T020857.500.txt
+<> 2025-05-01T020846.500.txt
+<> 2025-05-01T020835.200.json
+<> 2025-05-01T020805.200.json
+<> 2025-05-01T020743.200.json
+<> 2025-05-01T020703.422.json
+<> 2025-05-01T020441.422.json
+<> 2025-05-01T020413.422.json
