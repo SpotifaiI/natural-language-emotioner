@@ -51,3 +51,10 @@ async def stats():
         "success": True,
         "metrics": processor.stats(classificator)
     }
+
+@app.get("/stats_all")
+async def stats_all():
+    return {
+        "success": True,
+        "metrics": processor.stats_all()
+    }

@@ -2,6 +2,10 @@ GET http://localhost:8000/stats
 Accept: application/json
 
 ###
+GET http://localhost:8000/stats_all
+Accept: application/json
+
+###
 ### Send POST request with comment
 POST http://localhost:8000/ask
 Content-Type: application/json

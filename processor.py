@@ -1,4 +1,5 @@
 import pandas as pd
+import random
 import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
@@ -99,6 +100,43 @@ class Processor:
         y_true = [label for (features, label) in self.examples]
         y_pred = [classificator.classify(features) for (features, label) in
                   self.examples]
+        labels = sorted(set(y_true))
+
+        metrics = {
+            "accuracy": accuracy_score(y_true, y_pred),
+            "precision": precision_score(y_true, y_pred, labels=labels,
+                                         average='macro', zero_division=0),
+            "recall": recall_score(y_true, y_pred, labels=labels,
+                                   average='macro', zero_division=0),
+            "f1_score": f1_score(y_true, y_pred, labels=labels, average='macro',
+                                 zero_division=0),
+            "confusion_matrix": confusion_matrix(y_true, y_pred,
+                                                 labels=labels).tolist(),
+            "classification_report": classification_report(
+                y_true, y_pred, labels=labels, output_dict=True, zero_division=0
+            )
+        }
+
+        return metrics
+
+    def stats_all(self):
+        base_classification = apply_features(self.review_words, self.comments)
+        base_classification = list(base_classification)
+
+        random.seed(42)
+        random.shuffle(base_classification)
+
+        total_size = len(base_classification)
+        train_size = int(0.7 * total_size)
+        train_set = base_classification[:train_size]
+        test_set = base_classification[train_size:]
+
+        classificator = nltk.NaiveBayesClassifier.train(train_set)
+
+        y_true = [label for (features, label) in test_set]
+        y_pred = [classificator.classify(features) for (features, label) in
+                  test_set]
+
         labels = sorted(set(y_true))
 
         metrics = {
